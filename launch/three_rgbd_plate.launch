@@ -1,0 +1,21 @@
+<launch>
+	<arg name="plate_type"/>
+
+	<include file="$(find visual_sensors)/launch/$(arg plate_type).launch">
+		<arg name="serial_id" value="125650234247"/>
+		<arg name="base_name" value="center_rgbd"/>
+	</include>
+	<include file="$(find visual_sensors)/launch/$(arg plate_type).launch">
+		<arg name="serial_id" value="313498734147"/>
+		<arg name="base_name" value="left_rgbd"/>
+	</include>
+	<include file="$(find visual_sensors)/launch/$(arg plate_type).launch">
+		<arg name="serial_id" value="002556351047"/>
+		<arg name="base_name" value="right_rgbd"/>
+	</include>
+
+	<node pkg="visual_sensors" type="three_rgbd_plate" name="sensor_plate">
+		<rosparam command="load" file="$(find visual_sensors/config/plates/$(arg plate_type).yaml"/>
+	</node>
+
+</launch>

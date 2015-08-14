@@ -1,0 +1,7 @@
+left_rgbd_serial_id: 
+left_rgbd_base_name: "left_rgbd"
+left_rgbd_calibration:
+
+center_rgbd_base_name: "center_rgbd"
+
+right_rgbd_base_name: "right_rgbd"
