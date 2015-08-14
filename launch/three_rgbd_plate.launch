@@ -1,16 +1,19 @@
 <launch>
-	<arg name="plate_type"/>
+	<arg name="plate_type" value="kinect2"/>
+	<arg name="left_rgbd_serial_id" value="313498734147"/>
+	<arg name="center_rgbd_serial_id" value="125650234247"/>
+	<arg name="right_rgbd_serial_id" value="002556351047"/>
 
 	<include file="$(find visual_sensors)/launch/$(arg plate_type).launch">
-		<arg name="serial_id" value="125650234247"/>
+		<arg name="serial_id" value="$(arg center_rgbd_serial_id)"/>
 		<arg name="base_name" value="center_rgbd"/>
 	</include>
 	<include file="$(find visual_sensors)/launch/$(arg plate_type).launch">
-		<arg name="serial_id" value="313498734147"/>
+		<arg name="serial_id" value="$(arg left_rgbd_serial_id)"/>
 		<arg name="base_name" value="left_rgbd"/>
 	</include>
 	<include file="$(find visual_sensors)/launch/$(arg plate_type).launch">
-		<arg name="serial_id" value="002556351047"/>
+		<arg name="serial_id" value="$(arg right_rgbd_serial_id)"/>
 		<arg name="base_name" value="right_rgbd"/>
 	</include>
 
