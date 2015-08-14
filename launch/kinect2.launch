@@ -50,14 +50,14 @@
 		<param name="edge_aware_filter" type="bool"   value="$(arg edge_aware_filter)"/>
 		<param name="worker_threads"    type="int"    value="$(arg worker_threads)"/>
 
+		<remap from="$(arg device_name)/sd/camera_info" to="$(arg base_name)/ir/camera_info"/>
+		<remap from="$(arg device_name)/sd/image_ir" to="$(arg base_name)/ir/image"/>
+		<remap from="$(arg device_name)/sd/image_ir_rect" to="$(arg base_name)/ir/image_rect"/>
+
 		<remap from="$(arg device_name)/$(arg stream_quality)/camera_info" to="$(arg base_name)/rgb/camera_info"/>
 		<remap from="$(arg device_name)/$(arg stream_quality)/image_color" to="$(arg base_name)/rgb/image"/>
 		<remap from="$(arg device_name)/$(arg stream_quality)/image_mono" to="$(arg base_name)/rgb/image_mono"/>
 		<remap from="$(arg device_name)/$(arg stream_quality)/image_color_rect" to="$(arg base_name)/rgb/image_rect"/>
-
-		<remap from="$(arg device_name)/sd/camera_info" to="$(arg base_name)/ir/camera_info"/>
-		<remap from="$(arg device_name)/sd/image_ir" to="$(arg base_name)/ir/image"/>
-		<remap from="$(arg device_name)/sd/image_ir_rect" to="$(arg base_name)/ir/image_rect"/>
 
 		<remap from="$(arg device_name)/sd/image_depth" to="$(arg base_name)/depth_registered/image"/>
 		<remap from="$(arg device_name)/$(arg stream_quality)/image_depth_rect" to="$(arg base_name)/depth_registered/image_rect"/>
