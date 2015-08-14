@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import roslib
-roslib.load_manifest("three_rgbd_plate")
+roslib.load_manifest("visual_sensors")
 import rospy
 import tf
 
