@@ -1,0 +1,46 @@
+<launch>
+	<arg name="left_yaw_setting" default="50.0"/>
+	<arg name="left_pitch_setting" default="0.0"/>
+	<arg name="right_yaw_setting" default="50.0"/>
+	<arg name="right_pitch_setting" default="0.0"/>
+
+	<arg name="plate_type" value="kinect2"/>
+	<arg name="left_rgbd_serial_id" value="313498734147"/>
+	<arg name="center_rgbd_serial_id" value="125650234247"/>
+	<arg name="right_rgbd_serial_id" value="002556351047"/>
+
+	<include file="$(find visual_sensors)/launch/$(arg plate_type).launch">
+		<arg name="serial_id" value="$(arg center_rgbd_serial_id)"/>
+		<arg name="base_name" value="center_rgbd"/>
+		<arg name="device_name" value="kinect_1"/>
+	</include>
+	<include file="$(find visual_sensors)/launch/$(arg plate_type).launch">
+		<arg name="serial_id" value="$(arg left_rgbd_serial_id)"/>
+		<arg name="base_name" value="left_rgbd"/>
+		<arg name="device_name" value="kinect_2"/>
+	</include>
+	<include file="$(find visual_sensors)/launch/$(arg plate_type).launch">
+		<arg name="serial_id" value="$(arg right_rgbd_serial_id)"/>
+		<arg name="base_name" value="right_rgbd"/>
+		<arg name="device_name" value="kinect_3"/>
+	</include>
+
+	<node pkg="visual_sensors" type="three_rgbd_plate.py" name="sensor_plate">
+		<param name="left_yaw_setting" value="$(arg left_yaw_setting)"/>
+		<param name="left_pitch_setting" value="$(arg left_pitch_setting)"/>
+		<param name="right_yaw_setting" value="$(arg right_yaw_setting)"/>
+		<param name="right_pitch_setting" value="$(arg right_pitch_setting)"/>
+		<rosparam>
+			left_rgbd_base_name: "left_rgbd"
+			left_rgbd_position: (-0.1275, 0.23, 0.0)
+			left_rgbd_rotation: (-1.57079633 ,0,-1.57079633)
+			center_rgbd_base_name: "center_rgbd"
+			center_rgbd_position: (0.0, 0.0, 0.0)
+			center_rgbd_rotation: (-1.57079633, 0.0, -1.57079633)
+			right_rgbd_base_name: "right_rgbd"
+			right_rgbd_position: (-0.1275, -0.23, 0.0)
+			right_rgbd_rotation: (-1.57079633, 0.0, -1.57079633)
+		</rosparam>
+	</node>
+
+</launch>
