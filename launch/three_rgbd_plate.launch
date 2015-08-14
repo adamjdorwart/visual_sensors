@@ -21,7 +21,6 @@
 	</include>
 
 	<node pkg="visual_sensors" type="three_rgbd_plate.py" name="sensor_plate">
-		<rosparam command="load" file="$(find visual_sensors)/config/plates/$(arg plate_type).yaml"/>
 	</node>
 
 </launch>

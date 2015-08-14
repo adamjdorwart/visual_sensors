@@ -43,21 +43,24 @@ if __name__ == '__main__':
 
 	plate_base_name = rospy.get_param("~plate_base_name","three_rgbd_plate")
 
-	plate_tf = tf.TransformBroadcaster()
+	left_rgbd_tf = tf.TransformBroadcaster()
+	center_rgbd_tf = tf.TransformBroadcaster()
+	right_rgbd_tf = tf.TransformBroadcaster()
+
 	rate = rospy.Rate(10.0)
 
 	while not rospy.is_shutdown():
-		plate_tf.sendTransform(left_rgbd_position,
+		left_rgbd_tf.sendTransform(left_rgbd_position,
 			left_rgbd_rotation_qt,
 			rospy.Time.now(),
 			plate_base_name,
 			left_rgbd_base_name + "_link")
-		plate_tf.sendTransform(center_rgbd_position,
+		center_rgbd_tf.sendTransform(center_rgbd_position,
 			center_rgbd_rotation_qt,
 			rospy.Time.now(),
 			plate_base_name,
 			center_rgbd_base_name + "_link")
-		plate_tf.sendTransform(right_rgbd_position,
+		right_rgbd_tf.sendTransform(right_rgbd_position,
 			right_rgbd_rotation_qt,
 			rospy.Time.now(),
 			plate_base_name,
