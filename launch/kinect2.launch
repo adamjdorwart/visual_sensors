@@ -22,7 +22,7 @@
 	<arg name="edge_aware_filter"	default="true"/>
 	<arg name="nodelet_manager"	default="$(arg base_name)" />
 	<arg name="start_manager"	default="true" />
-	<arg name="stream_quality"	default="sd" />  <!-- "sd" = 512x424 qhd" = 960x540 "hd" = 1920x1080 -->
+	<arg name="stream_quality"	default="qhd" />  <!-- "sd" = 512x424 qhd" = 960x540 "hd" = 1920x1080 -->
 
 	<node pkg="nodelet" type="nodelet" name="$(arg nodelet_manager)" args="manager"
         if="$(arg start_manager)" output="screen"/>
