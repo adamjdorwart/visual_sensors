@@ -1,0 +1,49 @@
+<launch>
+	<arg name="left_yaw_setting" default="50.0"/>
+	<arg name="left_pitch_setting" default="0.0"/>
+	<arg name="right_yaw_setting" default="50.0"/>
+	<arg name="right_pitch_setting" default="0.0"/>
+	<arg name="center_pitch_setting" default="0.0"/>
+
+	<arg name="plate_type" value="primesense"/>
+	<arg name="plate_node" value="three_rgbd_plate.py"/>
+	<arg name="plate_config" value="structureio_plate_transform.yml"/>
+
+	<!-- These will vary from plate to plate -->
+	<arg name="left_rgbd_serial_id" value="32818"/>
+	<arg name="center_rgbd_serial_id" value="3852"/>
+	<arg name="right_rgbd_serial_id" value="32819"/>
+
+	<arg name="left_rgbd_base_name" value="left_rgbd"/>
+	<arg name="center_rgbd_base_name" value="center_rgbd"/>
+	<arg name="right_rgbd_base_name" value="right_rgbd"/>
+
+	<include file="$(find visual_sensors)/launch/$(arg plate_type).launch">
+		<arg name="serial_id" value="$(arg center_rgbd_serial_id)"/>
+		<arg name="base_name" value="$(arg center_rgbd_base_name)"/>
+		<arg name="device_name" value="$(arg plate_type)_1"/>
+	</include>
+	<include file="$(find visual_sensors)/launch/$(arg plate_type).launch">
+		<arg name="serial_id" value="$(arg left_rgbd_serial_id)"/>
+		<arg name="base_name" value="$(arg left_rgbd_base_name)"/>
+		<arg name="device_name" value="$(arg plate_type)_2"/>
+	</include>
+	<include file="$(find visual_sensors)/launch/$(arg plate_type).launch">
+		<arg name="serial_id" value="$(arg right_rgbd_serial_id)"/>
+		<arg name="base_name" value="$(arg right_rgbd_base_name)"/>
+		<arg name="device_name" value="$(arg plate_type)_3"/>
+	</include>
+
+	<node pkg="visual_sensors" type="$(arg plate_node)" name="sensor_plate">
+		<param name="left_rgbd_base_name" value="$(arg left_rgbd_base_name)"/>
+		<param name="center_rgbd_base_name" value="$(arg center_rgbd_base_name)"/>
+		<param name="right_rgbd_base_name" value="$(arg right_rgbd_base_name)"/>
+		<param name="left_yaw_setting" value="$(arg left_yaw_setting)"/>
+		<param name="left_pitch_setting" value="$(arg left_pitch_setting)"/>
+		<param name="right_yaw_setting" value="$(arg right_yaw_setting)"/>
+		<param name="right_pitch_setting" value="$(arg right_pitch_setting)"/>
+		<param name="center_pitch_setting" value="$(arg center_pitch_setting)"/>
+		<rosparam command="load" file="$(find visual_sensors)/param/$(arg plate_config)"/>
+	</node>
+
+</launch>

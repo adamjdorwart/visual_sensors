@@ -1,0 +1,44 @@
+<launch>
+	<arg name="serial_id"		default=""/>
+	<arg name="base_name"		default="rgbd_sensor"/>
+	<arg name="calibration"		default=""/>
+
+	<arg name="device_name"		default="xtion"/>
+	<arg name="depth_registration" default="true" />
+	<arg name="color_depth_synchronization" default="false" />
+	<arg name="auto_exposure" default="true" />
+	<arg name="auto_white_balance" default="true" />
+
+	<arg name="nodelet_manager"	default="$(arg base_name)" />
+	<arg name="start_manager"	default="true" />
+	<arg name="num_worker_threads" default="4"/>
+
+	<node pkg="nodelet" type="nodelet" name="$(arg nodelet_manager)" args="manager"
+    	if="$(arg start_manager)" output="screen"/>
+
+	<node pkg="nodelet" type="nodelet" name="$(arg base_name)_device"
+	    args="load openni2_camera/OpenNI2DriverNodelet $(arg nodelet_manager)"
+	    respawn="true" output="screen">
+		<param name="device_id" type="str" value="$(arg serial_id)" />
+		<param name="rgb_camera_info_url"   value="$(arg calibration)" />
+		<param name="depth_camera_info_url" value="$(arg calibration)" />
+		<param name="rgb_frame_id"   value="$(arg base_name)_rgb_optical_frame" />
+		<param name="ir_frame_id" value="$(arg base_name)_ir_optical_frame" />
+		<param name="depth_frame_id" value="$(arg base_name)_ir_optical_frame" />
+
+		<param name="depth_registration" value="$(arg depth_registration)" />
+		<param name="color_depth_synchronization" value="$(arg color_depth_synchronization)" />
+		<param name="auto_exposure" value="$(arg auto_exposure)" />
+		<param name="auto_white_balance" value="$(arg auto_white_balance)" />
+
+		<remap from="ir" to="/$(arg base_name)/ir"/>
+		<remap from="rgb" to="/$(arg base_name)/rgb"/>
+		<remap from="depth" to="/$(arg base_name)/depth"/>
+		<remap from="depth_registered" to="/$(arg device_name)/depth_registered"/>
+		<remap from="projector" to="/$(arg device_name)/projector"/>
+
+		<remap from="$(arg base_name)/depth/image" to="$(arg base_name)/depth/image_metric"/>
+
+	</node>
+
+</launch>
