@@ -1,19 +1,26 @@
 <launch>
+	<!-- These settings may be static or dynamic for different plate setups-->
 	<arg name="left_yaw_setting" default="50.0"/>
 	<arg name="left_pitch_setting" default="0.0"/>
 	<arg name="right_yaw_setting" default="50.0"/>
 	<arg name="right_pitch_setting" default="0.0"/>
 	<arg name="center_pitch_setting" default="0.0"/>
 
+	<!-- The type determines the camera launch file and the node and config -->
+	<!-- files determine the setup and configuration -->
 	<arg name="plate_type" value="kinect2"/>
 	<arg name="plate_node" value="three_rgbd_plate.py"/>
 	<arg name="plate_config" value="$(arg plate_type)_plate_transform.yml"/>
 
-	<!-- These will vary from plate to plate -->
-	<arg name="left_rgbd_serial_id" value="313498734147"/>
-	<arg name="center_rgbd_serial_id" value="125650234247"/>
-	<arg name="right_rgbd_serial_id" value="002556351047"/>
+	<!-- These serial numbers need to be added for each plate -->
+	<arg name="left_rgbd_serial_id" value=""/>
+	<arg name="center_rgbd_serial_id" value=""/>
+	<arg name="right_rgbd_serial_id" value=""/>
 
+	<!-- These should be kept uniform across different plate types to keep -->
+	<!-- a consistent interace between plates. This should only be broken  -->
+	<!-- for drastically different plate configurations like a different   -->
+	<!-- number of visual                                                  -->
 	<arg name="left_rgbd_base_name" value="left_rgbd"/>
 	<arg name="center_rgbd_base_name" value="center_rgbd"/>
 	<arg name="right_rgbd_base_name" value="right_rgbd"/>
