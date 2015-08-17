@@ -1,7 +1,7 @@
 <launch>
-	<arg name="left_yaw_setting" default="50.0"/>
+	<arg name="left_yaw_setting" default="58.0"/>
 	<arg name="left_pitch_setting" default="0.0"/>
-	<arg name="right_yaw_setting" default="50.0"/>
+	<arg name="right_yaw_setting" default="58.0"/>
 	<arg name="right_pitch_setting" default="0.0"/>
 	<arg name="center_pitch_setting" default="0.0"/>
 
