@@ -41,4 +41,33 @@
 
 	</node>
 
+	<node pkg="nodelet" type="nodelet" name="$(arg base_name)_rgb_rectify"
+		args="load image_proc/rectify $(arg nodelet_manager)"
+		respawn="true" output="screen">
+		<remap from="image_mono" to="$(arg base_name)/rgb/image"/>
+		<remap from="camera_info" to="$(arg base_name)/rgb/camera_info"/>
+		<remap from="image_rect" to="$(arg base_name)/rgb/image_rect"/>
+	</node>
+
+	<node pkg="nodelet" type="nodelet" name="$(arg base_name)_ir_rectify"
+		args="load image_proc/rectify $(arg nodelet_manager)"
+		respawn="true" output="screen">
+		<remap from="image_mono" to="$(arg base_name)/ir/image"/>
+		<remap from="camera_info" to="$(arg base_name)/ir/camera_info"/>
+		<remap from="image_rect" to="$(arg base_name)/ir/image_rect"/>
+	</node>
+
+	<node pkg="nodelet" type="nodelet" name="$(arg base_name)_depth_rectify"
+		args="load image_proc/rectify $(arg nodelet_manager)"
+		respawn="true" output="screen">
+		<remap from="image_mono" to="$(arg base_name)/depth/image_raw"/>
+		<remap from="camera_info" to="$(arg base_name)/depth/camera_info"/>
+		<remap from="image_rect" to="$(arg base_name)/depth/image_raw_rect"/>
+	</node>
+	
+	<node pkg="tf" type="static_transform_publisher" name="$(arg camera)_ir_link"
+    args="0 0 0 0 0 0 $(arg base_name)_link $(arg base_name)_rgb_optical_frame 100" />
+	<node pkg="tf" type="static_transform_publisher" name="$(arg camera)_ir_link"
+    args="0 0 0 0 0 0 $(arg base_name)_link $(arg base_name)_ir_optical_frame 100" />
+
 </launch>
