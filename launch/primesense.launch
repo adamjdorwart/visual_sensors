@@ -3,8 +3,8 @@
 	<arg name="base_name"		default="rgbd_sensor"/>
 	<arg name="calibration"		default=""/>
 
-	<arg name="device_name"		default="xtion"/>
-	<arg name="depth_registration" default="true" />
+	<arg name="device_name"		default="primesense"/>
+	<arg name="depth_registration" default="false" />
 	<arg name="color_depth_synchronization" default="false" />
 	<arg name="auto_exposure" default="true" />
 	<arg name="auto_white_balance" default="true" />
@@ -72,9 +72,12 @@
         <remap from="points"     to="$(arg base_name)/depth/points" />
     </node>
 
+    <arg name="pi/2" value="1.5707963267948966" />
+	<arg name="optical_rotate" value="0 0 0 -$(arg pi/2) 0 -$(arg pi/2)" />
+
 	<node pkg="tf" type="static_transform_publisher" name="$(arg base_name)_rgb_link"
-    args="0 0 0 0 0 0 $(arg base_name)_link $(arg base_name)_rgb_optical_frame 100" />
+    args="$(arg optical_rotate) $(arg base_name)_link $(arg base_name)_rgb_optical_frame 100" />
 	<node pkg="tf" type="static_transform_publisher" name="$(arg base_name)_ir_link"
-    args="0 0 0 0 0 0 $(arg base_name)_link $(arg base_name)_ir_optical_frame 100" />
+    args="$(arg optical_rotate) $(arg base_name)_link $(arg base_name)_ir_optical_frame 100" />
 
 </launch>

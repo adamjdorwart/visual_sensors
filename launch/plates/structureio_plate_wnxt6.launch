@@ -21,17 +21,17 @@
 	<include file="$(find visual_sensors)/launch/$(arg plate_type).launch">
 		<arg name="serial_id" value="$(arg center_rgbd_serial_id)"/>
 		<arg name="base_name" value="$(arg center_rgbd_base_name)"/>
-		<arg name="device_name" value="$(arg plate_type)_1"/>
+		<arg name="device_name" value="structureio_1"/>
 	</include>
 	<include file="$(find visual_sensors)/launch/$(arg plate_type).launch">
 		<arg name="serial_id" value="$(arg left_rgbd_serial_id)"/>
 		<arg name="base_name" value="$(arg left_rgbd_base_name)"/>
-		<arg name="device_name" value="$(arg plate_type)_2"/>
+		<arg name="device_name" value="structureio_2"/>
 	</include>
 	<include file="$(find visual_sensors)/launch/$(arg plate_type).launch">
 		<arg name="serial_id" value="$(arg right_rgbd_serial_id)"/>
 		<arg name="base_name" value="$(arg right_rgbd_base_name)"/>
-		<arg name="device_name" value="$(arg plate_type)_3"/>
+		<arg name="device_name" value="structureio_3"/>
 	</include>
 
 	<node pkg="visual_sensors" type="$(arg plate_node)" name="sensor_plate">

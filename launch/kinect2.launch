@@ -75,4 +75,12 @@
 	    <remap from="depth_registered/points"     to="$(arg base_name)/depth_registered/points" />
     	<param name="queue_size" type="int" value="$(arg queue_size)" />
     </node>
+
+    <arg name="pi/2" value="1.5707963267948966" />
+  	<arg name="optical_rotate" value="0 0 0 -$(arg pi/2) 0 -$(arg pi/2)" />
+  	
+  	<node pkg="tf" type="static_transform_publisher" name="$(arg base_name)_rgb_link"
+    args="$(arg optical_rotate) $(arg base_name)_link $(arg base_name)_rgb_optical_frame 100" />
+	<node pkg="tf" type="static_transform_publisher" name="$(arg base_name)_ir_link"
+    args="$(arg optical_rotate) $(arg base_name)_link $(arg base_name)_ir_optical_frame 100" />
 </launch>

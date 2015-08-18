@@ -1,8 +1,8 @@
 left_rgbd_position: [0.06198, 0.05199, 0.01956]
-left_rgbd_rotation: [-1.57079633 ,0,-1.57079633]
+left_rgbd_rotation: [0.0, 0.0, 0.0]
 
 center_rgbd_position: [0.09107, 0.0049, -0.01092]
-center_rgbd_rotation: [-1.57079633, 0.0, -1.57079633]
+center_rgbd_rotation: [0.0, 0.0, 0.0]
 
 right_rgbd_position: [0.06198, -0.05295, 0.01956]
-right_rgbd_rotation: [-1.57079633, 0.0, -1.57079633]
+right_rgbd_rotation: [0.0, 0.0, 0.0]
